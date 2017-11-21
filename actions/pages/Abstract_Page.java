@@ -19,6 +19,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import joomla.AbstractPageUI;
+import joomla.AddNewArticlePageUI;
+import joomla.HomePageUI;
+import joomla.LoginUI;
+
 
 
 public class Abstract_Page {
@@ -60,6 +65,12 @@ public class Abstract_Page {
 		element.sendKeys(value);
 	}
 
+	public void sendkeyToBody(WebDriver driver, String tagname, String value){
+		WebElement element= driver.findElement(By.cssSelector(tagname));
+		element.clear();
+		element.sendKeys(value);
+	}
+	
 	public String getTextOfElement(WebDriver driver, String locator) {
 		WebElement element = driver.findElement(By.xpath(locator));
 		return element.getText();
@@ -159,6 +170,14 @@ public class Abstract_Page {
 		WebElement element = driver.findElement(By.xpath(locator));
 		driver.switchTo().frame(element);
 	}
+	
+	public void switchToIframeByID(WebDriver driver, String id) {
+		WebElement element = driver.findElement(By.id(id));
+		driver.switchTo().frame(element);
+	}
+	public void switchToDefault(WebDriver driver){
+		driver.switchTo().defaultContent();
+	}
 
 	public void doubleClick(WebDriver driver, String locator) {
 		Actions action = new Actions(driver);
@@ -167,7 +186,7 @@ public class Abstract_Page {
 
 	public void hoverMouse(WebDriver driver, String locator) {
 		Actions action = new Actions(driver);
-		action.clickAndHold(driver.findElement(By.xpath(locator)));
+		action.moveToElement(driver.findElement(By.xpath(locator))).build().perform();
 	}
 
 	public void rightClick(WebDriver driver, String locator) {
@@ -296,4 +315,23 @@ public class Abstract_Page {
 			return null;
 		}
 	}	
+	public HomePage clickToLoginBtn(WebDriver driver) {
+		clickToElement(driver, LoginUI.Login_Btn);
+		return PageFactoryes.getHomePage(driver);
+		
+	}
+	
+	public AddNewArticlePage clickToNewArtitcle(WebDriver driver) {
+		executeJavaScriptForElement(driver, "arguments[0].click();", HomePageUI.NewArticle_Link);
+		return PageFactoryes.getAddNewArticlePage(driver);
+	}
+	
+	public DashBoardPage clickToSaveandCloseBtn(WebDriver driver) {
+		clickToElement(driver, AddNewArticlePageUI.SaveandClose_Btn);
+		return PageFactoryes.getDashBoardPage(driver);		
+	}
+	public EditArticlePage editCreatedArticle(WebDriver driver,String title) {
+		clickToElement(driver, AbstractPageUI.dynamicTitle, title);	
+		return PageFactoryes.getEditArticlePage(driver);
+	}
 }

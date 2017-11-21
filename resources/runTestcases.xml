@@ -4,35 +4,35 @@
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
 </listeners>
-<!--   <test name="TestFF"> -->
-<!--   	<parameter name="browser" value="firefox"/> -->
-<!--   	<parameter name="url" value="http://demo.guru99.com/v4/"/> -->
-<!--     <classes> -->
-<!--       <class name="com.bankguru99.login.Login01_LoginSuccessfully"/> -->
-<!--     </classes> -->
-<!--   </test>  -->
+  <test name="TestFF">
+  	<parameter name="browser" value="firefox"/>
+  	<parameter name="url" value="http://automationfc.joomla.com/administrator"/>
+    <classes>
+      <class name="com.joomla.login.TC01_CreateNewArticle"/>
+    </classes>
+  </test> 
 
 <!-- 	<test name="TestIE"> -->
 <!-- 		<parameter name="browser" value="ie" /> -->
-<!-- 		<parameter name="url" value="http://demo.guru99.com/v4/" /> -->
+<!-- 		<parameter name="url" value="http://automationfc.joomla.com/administrator" /> -->
 <!-- 		<classes> -->
-<!-- 			<class name="com.bankguru99.login.Login01_LoginSuccessfully" /> -->
+<!-- 			<class name="com.joomla.login.TC01_CreateNewArticle" /> -->
 <!-- 		</classes> -->
 <!-- 	</test>  -->
 
-	<test name="TestChrome">
-		<parameter name="browser" value="chrome" />
-		<parameter name="url" value="http://demo.guru99.com/v4/" />
-		<classes>
-			<class name="com.bankguru99.login.Login01_LoginSuccessfully" />
-		</classes>
-	</test> 
+<!-- 	<test name="TestChrome"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<parameter name="url" value="http://automationfc.joomla.com/administrator" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.joomla.login.TC01_CreateNewArticle" /> -->
+<!-- 		</classes> -->
+<!-- 	</test>  -->
 	
 <!-- 	<test name="HeadlessChrome"> -->
 <!-- 		<parameter name="browser" value="headless" /> -->
-<!-- 		<parameter name="url" value="http://demo.guru99.com/v4/" /> -->
+<!-- 		<parameter name="url" value="http://automationfc.joomla.com/administrator" /> -->
 <!-- 		<classes> -->
-<!-- 			<class name="com.bankguru99.login.Login01_LoginSuccessfully" /> -->
+<!-- 			<class name="com.joomla.login.TC01_CreateNewArticle" /> -->
 <!-- 		</classes> -->
 <!-- 	</test>  -->
 </suite> 
