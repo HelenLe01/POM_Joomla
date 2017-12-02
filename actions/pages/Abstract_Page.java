@@ -2,6 +2,7 @@ package pages;
 
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -18,9 +19,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import joomla.AbstractPageUI;
 import joomla.AddNewArticlePageUI;
+import joomla.DashBoardPageUI;
 import joomla.HomePageUI;
 import joomla.LoginUI;
 
@@ -30,6 +35,9 @@ public class Abstract_Page {
 	WebDriver driver;
 
 	// WebBrowser
+	public void navigateUrl(WebDriver driver, String url){
+		driver.get(url);
+	}
 
 	public String getCurrentUrl(WebDriver driver) {
 		return driver.getCurrentUrl();
@@ -164,6 +172,9 @@ public class Abstract_Page {
 			return true;
 		else
 			return false;
+	}
+	public void closeBrowser(WebDriver driver){
+		driver.close();
 	}
 
 	public void switchToIframe(WebDriver driver, String locator) {
@@ -319,19 +330,64 @@ public class Abstract_Page {
 		clickToElement(driver, LoginUI.Login_Btn);
 		return PageFactoryes.getHomePage(driver);
 		
-	}
-	
+	}	
 	public AddNewArticlePage clickToNewArtitcle(WebDriver driver) {
 		executeJavaScriptForElement(driver, "arguments[0].click();", HomePageUI.NewArticle_Link);
 		return PageFactoryes.getAddNewArticlePage(driver);
-	}
-	
+	}	
 	public DashBoardPage clickToSaveandCloseBtn(WebDriver driver) {
 		clickToElement(driver, AddNewArticlePageUI.SaveandClose_Btn);
 		return PageFactoryes.getDashBoardPage(driver);		
 	}
+	public DashBoardPage clickToArtitcle(WebDriver driver) {
+		clickToElement(driver, HomePageUI.Article_Link);
+		return PageFactoryes.getDashBoardPage(driver);
+	}
+	public EditArticlePage clickToSaveBtn(WebDriver driver) {
+		clickToElement(driver, AddNewArticlePageUI.Save_Btn);
+		return PageFactoryes.getEditArticlePage(driver);
+	}
 	public EditArticlePage editCreatedArticle(WebDriver driver,String title) {
 		clickToElement(driver, AbstractPageUI.dynamicTitle, title);	
 		return PageFactoryes.getEditArticlePage(driver);
+	}
+	public void clickToLogOut(WebDriver driver) {
+		clickToElement(driver, DashBoardPageUI.LogOutLink);
+	}
+//	public LoginPage clickToLogOut(WebDriver driver) {
+//		clickToElement(driver, DashBoardPageUI.LogOutLink);
+//		return PageFactoryes.getLoginPage(driver);
+//	}
+	public void clickToElement1(WebDriver driver, String locator, String value) {
+		locator= String.format(locator, value);
+		WebElement element = driver.findElement(By.xpath(locator));
+		element.click();
+	}
+
+	public boolean verifyDataOnTable(WebDriver driver,String tagName, String locator1, String locator2, String value) {
+	boolean isDisplayed = false;
+		WebElement Table = driver.findElement(By.tagName(tagName));
+		java.util.List<WebElement> tableRows = Table.findElements(By.xpath(locator1));
+		for (int i = 0; i < tableRows.size(); i++) {
+			WebElement row = tableRows.get(i);
+			locator2=String.format(locator2, value);
+			isDisplayed=row.findElement(By.xpath(locator2)).isDisplayed();
+		}
+		return isDisplayed;
+	}
+	public void verifyRecordExistedInTable(WebDriver driver,String value) {
+		getTitleOfRows(driver, DashBoardPageUI.TableTag, DashBoardPageUI.tdTag, DashBoardPageUI.title, value);
+		
+	}
+	public  void getTitleOfRows(WebDriver driver,String tagName, String locator1, String locator2, String value) {
+		WebElement Table = driver.findElement(By.tagName(tagName));
+		java.util.List<WebElement> tableRows = Table.findElements(By.xpath(locator1));
+		for (int i = 0; i < tableRows.size(); i++) {
+			WebElement row = tableRows.get(i);
+			locator2=String.format(locator2, value);
+			boolean value1=row.findElement(By.xpath(locator2)).isDisplayed();
+			if (value1){
+			break;}
+		} 
 	}
 }

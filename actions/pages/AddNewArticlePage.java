@@ -37,4 +37,7 @@ public class AddNewArticlePage extends Abstract_Page{
 		clickToElement(driver, AddNewArticlePageUI.TextArea);
 		
 	}
+	public void selectStatus(String state){
+		selectByVisibleText(driver, AddNewArticlePageUI.StateDropdown, state);
+	}
 }

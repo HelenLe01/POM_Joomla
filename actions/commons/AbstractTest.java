@@ -38,6 +38,7 @@ public class AbstractTest {
 		return driver;
 	}
 	
+	
 	public boolean verifyTrue(boolean condition) {
     	boolean pass = true;
 		try {

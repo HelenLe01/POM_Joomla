@@ -6,7 +6,8 @@ public class EditArticlePageUI {
 	public static final String TextArea = "//*[@id='tinymce']/p";
 	public static final String SaveandClose_Btn = "//button[@class='btn btn-small button-save']";
 	public static final String Tagname = "#tinymce";
+	public static final String Message_Label = "//div[@class='alert-message']";
 	public static String Title_Text = "//input[@name='jform[title]']";
 	public static String Automation_Option = "//div[@class='chzn-drop']//li[contains(text(),'Manual Testing')]";
-
+	public static String TitleOfBrowser = "Articles: Edit - automationfc - Administration";
 }

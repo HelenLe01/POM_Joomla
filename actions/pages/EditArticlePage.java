@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
+import joomla.DashBoardPageUI;
 import joomla.EditArticlePageUI;
 
 public class EditArticlePage extends Abstract_Page{
@@ -36,6 +37,13 @@ public class EditArticlePage extends Abstract_Page{
 	public void clickToTextArea() {
 		clickToElement(driver, EditArticlePageUI.TextArea);
 		
+	}
+	public void closeBrowser() {
+		closeBrowser(driver);
+		
+	}
+	public String getMsg() {
+		return getTextOfElement(driver, EditArticlePageUI.Message_Label);
 	}
 
 }
